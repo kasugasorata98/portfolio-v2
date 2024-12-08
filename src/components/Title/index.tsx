@@ -5,5 +5,12 @@ import { TitleProps } from "antd/es/typography/Title";
 const { Title: AntTitle } = Typography;
 
 export const Title = (props: TitleProps) => {
-  return <AntTitle {...props} />;
+  return (
+    <AntTitle
+      style={{
+        fontFamily: "Roboto",
+      }}
+      {...props}
+    />
+  );
 };

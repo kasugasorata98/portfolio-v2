@@ -1,8 +1,10 @@
-"use client";
-import { COLORS } from "@/constants/colors";
-import { useState } from "react";
-import { TypeAnimation } from "react-type-animation";
+import { Flex } from "antd";
+import Home from "./Home";
 
 export default function Page() {
-  return <></>;
+  return (
+    <Flex>
+      <Home />;
+    </Flex>
+  );
 }

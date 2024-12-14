@@ -3,8 +3,9 @@ import Home from "./Home";
 
 export default function Page() {
   return (
-    <Flex>
-      <Home />;
+    <Flex vertical={true}>
+      <Home />
+      <Home />
     </Flex>
   );
 }

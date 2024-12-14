@@ -7,6 +7,7 @@ import Lottie from "lottie-react";
 import MusicAnimation from "../../../public/lotties/music.json";
 import ReactPlayer from "react-player";
 import { motion } from "framer-motion";
+import { MenuOutlined } from "@ant-design/icons";
 
 const FlexMotion = motion(Flex);
 const SpaceMotion = motion(Space);
@@ -64,27 +65,47 @@ const navLinks: NavLinkProps[] = [
   },
 ];
 
-const NavLink = (props: NavLinkProps) => {
+const NavLinkFlexStyled = styled(Flex)`
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+`;
+
+const MenuOutlinedStyled = styled(MenuOutlined)`
+  cursor: pointer;
+  display: none;
+  color: ${COLORS.TURQUOISE};
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 1.2em;
+  &:hover {
+    background-color: ${COLORS.HOVER_DARK};
+  }
+  @media screen and (max-width: 800px) {
+    display: flex;
+  }
+`;
+
+const NavLink = React.forwardRef<HTMLDivElement, NavLinkProps>((props, ref) => {
   return (
-    <Flex
-      vertical={false}
-      style={{
-        cursor: "pointer",
-        alignItems: "center",
-      }}
-    >
+    <NavLinkFlexStyled ref={ref} vertical={false}>
       <NavTextNum code={true}>{props.num}</NavTextNum>
       <NavTextValue code={true}>{props.value}</NavTextValue>
-    </Flex>
+    </NavLinkFlexStyled>
   );
-};
+});
 
 const AppHeader: React.FC = () => {
   const [playing, setPlaying] = useState(true);
   return (
     <Flex
+      className="header"
       style={{
-        width: "100vw",
+        width: "100%",
         justifyContent: "space-between",
         paddingInline: 20,
         paddingBlock: 10,
@@ -143,25 +164,33 @@ const AppHeader: React.FC = () => {
         {navLinks.map((link) => (
           <NavLink key={link.num} num={link.num} value={link.value} />
         ))}
-        <Space
+        <Flex
           style={{
-            width: 60,
+            alignItems: "center",
+            gap: 10,
           }}
         >
-          <Lottie
+          <Space
             style={{
-              cursor: "pointer",
+              width: 60,
             }}
-            animationData={MusicAnimation}
-            loop={!!playing}
-            autoplay={!!playing}
-            disabled={!playing}
-            onClick={() => {
-              console.log("hi");
-              setPlaying(!playing);
-            }}
-          />
-        </Space>
+          >
+            <Lottie
+              style={{
+                cursor: "pointer",
+              }}
+              animationData={MusicAnimation}
+              loop={!!playing}
+              autoplay={!!playing}
+              disabled={!playing}
+              onClick={() => {
+                console.log("hi");
+                setPlaying(!playing);
+              }}
+            />
+          </Space>
+          <MenuOutlinedStyled />
+        </Flex>
       </FlexMotion>
     </Flex>
   );

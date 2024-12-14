@@ -2,6 +2,7 @@
 import { Paragraph } from "@/components/Paragraph";
 import { Text } from "@/components/Text";
 import { COLORS } from "@/constants/colors";
+import useDeviceScreen from "@/hooks/useDeviceScreen";
 import { Flex, Image } from "antd";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
@@ -9,11 +10,12 @@ import { TypeAnimation } from "react-type-animation";
 const FlexMotion = motion(Flex);
 
 export default function Home() {
+  const { currentBreakpoint } = useDeviceScreen();
   return (
     <Flex
       style={{
         height: "100dvh",
-        width: "100dvw",
+        width: "100%",
         boxSizing: "border-box",
         paddingTop: 72,
         alignItems: "center",
@@ -23,39 +25,41 @@ export default function Home() {
       <Flex
         vertical={true}
         style={{
-          width: "65%",
+          width: currentBreakpoint.sm ? "80%" : "65%",
           gap: 16,
           boxSizing: "border-box",
         }}
       >
-        <Flex
+        <FlexMotion
           gap={12}
           style={{
             justifyContent: "flex-start",
           }}
         >
-          <motion.div
-            initial={{
-              x: "-100vw",
-              display: "none",
-            }}
-            animate={{
-              x: 0,
-              display: "flex",
-            }}
-            transition={{
-              delay: 4.5,
-              duration: 0.1,
-            }}
-          >
-            <Image
-              src="https://avatars.githubusercontent.com/u/50161346?v=5"
-              preview={false}
-              style={{
-                height: 135,
+          {currentBreakpoint.lg && (
+            <motion.div
+              initial={{
+                x: "-100vw",
+                display: "none",
               }}
-            />
-          </motion.div>
+              animate={{
+                x: 0,
+                display: "flex",
+              }}
+              transition={{
+                delay: 4.5,
+                duration: 0.1,
+              }}
+            >
+              <Image
+                src="https://avatars.githubusercontent.com/u/50161346?v=5"
+                preview={false}
+                style={{
+                  height: 135,
+                }}
+              />
+            </motion.div>
+          )}
           <FlexMotion
             vertical={true}
             initial={{ x: 0 }}
@@ -72,6 +76,7 @@ export default function Home() {
               style={{
                 color: COLORS.TURQUOISE,
                 fontSize: 16,
+                marginLeft: currentBreakpoint.sm ? -2 : 0,
               }}
             >
               <TypeAnimation
@@ -82,9 +87,10 @@ export default function Home() {
             <Text
               code={true}
               style={{
+                padding: 0,
                 color: COLORS.PERIWINKLE,
-                marginLeft: -6,
-                fontSize: 48,
+                marginLeft: currentBreakpoint.sm ? -5 : -6,
+                fontSize: currentBreakpoint.sm ? 36 : 48,
               }}
             >
               <TypeAnimation sequence={[2000, "Jeromy Kho."]} cursor={false} />
@@ -93,14 +99,14 @@ export default function Home() {
               code={true}
               style={{
                 color: COLORS.COOL_GRAY,
-                fontSize: 24,
+                fontSize: currentBreakpoint.sm ? 18 : 24,
                 marginLeft: -2,
               }}
             >
               <TypeAnimation sequence={[3000, "Software Engineer."]} />
             </Text>
           </FlexMotion>
-        </Flex>
+        </FlexMotion>
 
         <FlexMotion
           vertical={true}

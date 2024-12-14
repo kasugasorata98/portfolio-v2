@@ -3,6 +3,7 @@ import { COLORS } from "@/constants/colors";
 import { Text } from "../Text";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import useDeviceScreen from "@/hooks/useDeviceScreen";
 
 const FlexMotion = motion(Flex);
 
@@ -11,6 +12,7 @@ const Email = styled(Text)`
   color: ${COLORS.PERIWINKLE};
   letter-spacing: 3px;
   transition: all 0.3s ease;
+  text-decoration: none;
   cursor: pointer;
   &:hover {
     letter-spacing: 3.5px;
@@ -19,6 +21,7 @@ const Email = styled(Text)`
 `;
 
 export const RightSidePanel = () => {
+  const { currentBreakpoint } = useDeviceScreen();
   return (
     <FlexMotion
       initial={{
@@ -35,6 +38,7 @@ export const RightSidePanel = () => {
       vertical={true}
       gap={115}
       style={{
+        display: currentBreakpoint.sm ? "none" : "flex",
         position: "fixed",
         right: -75,
         bottom: 0,

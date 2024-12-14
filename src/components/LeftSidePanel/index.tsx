@@ -7,10 +7,12 @@ import InstagramAnimation from "../../../public/lotties/instagram.json";
 import Lottie from "lottie-react";
 import { COLORS } from "@/constants/colors";
 import { motion } from "framer-motion";
+import useDeviceScreen from "@/hooks/useDeviceScreen";
 
 const FlexMotion = motion(Flex);
 
 export const LeftSidePanel = () => {
+  const { currentBreakpoint } = useDeviceScreen();
   const socialButtons: Array<{
     animation: any;
     href: string;
@@ -52,6 +54,7 @@ export const LeftSidePanel = () => {
       vertical={true}
       gap={10}
       style={{
+        display: currentBreakpoint.sm ? "none" : "flex",
         width: 45,
         position: "fixed",
         left: 0,

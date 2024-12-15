@@ -76,11 +76,13 @@ export const About = () => {
   };
 
   useEffect(() => {
+    if (messages.length <= 2) return;
     scrollToBottom();
   }, [messages]);
 
   const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && e.currentTarget.value) {
+      setIsBotTyping(true);
       const inputValue = e.currentTarget.value;
       setMessage("");
       const newMessages: Message[] = [
@@ -112,7 +114,6 @@ export const About = () => {
         },
       ]);
 
-      setIsBotTyping(true);
       ChatService.sendMessage(newMessages)
         .then((reply) => {
           setMessages((prevMessages) => {
@@ -152,7 +153,7 @@ export const About = () => {
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
-        marginBottom: 20,
+        marginBottom: 40,
       }}
     >
       <Flex style={{ alignItems: "center", width: chatWidth, gap: 8 }}>
@@ -227,7 +228,7 @@ export const About = () => {
             overflowY: "auto",
             paddingRight: 20,
             paddingBottom: 20,
-            height: 400,
+            height: 300,
           }}
         >
           {renderChat(messages)}

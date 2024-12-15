@@ -14,7 +14,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isOnboarding, setIsOnboarding] = useState(false);
+  const [isOnboarding, setIsOnboarding] = useState(true);
   return (
     <html
       suppressHydrationWarning
@@ -48,16 +48,6 @@ export default function RootLayout({
           )}
           {!isOnboarding && (
             <>
-              <Snowfall
-                style={{
-                  height: "100%",
-                  width: "100vw",
-                  zIndex: 1,
-                  position: "absolute",
-                }}
-                snowflakeCount={25}
-              />
-
               <AppHeader />
               <LeftSidePanel />
               {children}

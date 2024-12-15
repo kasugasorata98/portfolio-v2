@@ -1,4 +1,5 @@
 "use client";
+import "./globals.css";
 import { COLORS } from "@/constants/colors";
 import Snowfall from "react-snowfall";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
@@ -13,7 +14,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isOnboarding, setIsOnboarding] = useState(true);
+  const [isOnboarding, setIsOnboarding] = useState(false);
   return (
     <html
       suppressHydrationWarning

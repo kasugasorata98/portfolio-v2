@@ -1,0 +1,24 @@
+/* Custom Scrollbar Styles for macOS Look */
+::-webkit-scrollbar {
+    width: 8px; /* Thin scrollbar width */
+    height: 8px; /* Thin scrollbar height (for horizontal scrollbars) */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4); /* Subtle dark gray for the thumb */
+    border-radius: 10px; /* Fully rounded edges */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly darker on hover */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent; /* Invisible track (like macOS) */
+  }
+
+body {
+    overflow-x: hidden;
+}
+  

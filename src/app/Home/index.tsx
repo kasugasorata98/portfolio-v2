@@ -10,7 +10,7 @@ import { TypeAnimation } from "react-type-animation";
 const FlexMotion = motion(Flex);
 
 export default function Home() {
-  const { currentBreakpoint } = useDeviceScreen();
+  const { isSmall, isLarge } = useDeviceScreen();
   return (
     <Flex
       style={{
@@ -25,7 +25,7 @@ export default function Home() {
       <Flex
         vertical={true}
         style={{
-          width: currentBreakpoint.sm ? "80%" : "65%",
+          width: isSmall ? "80%" : "65%",
           gap: 16,
           boxSizing: "border-box",
         }}
@@ -36,7 +36,7 @@ export default function Home() {
             justifyContent: "flex-start",
           }}
         >
-          {currentBreakpoint.lg && (
+          {isLarge && (
             <motion.div
               initial={{
                 x: "-100vw",
@@ -76,7 +76,7 @@ export default function Home() {
               style={{
                 color: COLORS.TURQUOISE,
                 fontSize: 16,
-                marginLeft: currentBreakpoint.sm ? -2 : 0,
+                marginLeft: isSmall ? -2 : 0,
               }}
             >
               <TypeAnimation
@@ -89,8 +89,8 @@ export default function Home() {
               style={{
                 padding: 0,
                 color: COLORS.PERIWINKLE,
-                marginLeft: currentBreakpoint.sm ? -5 : -6,
-                fontSize: currentBreakpoint.sm ? 36 : 48,
+                marginLeft: isSmall ? -5 : -6,
+                fontSize: isSmall ? 36 : 48,
               }}
             >
               <TypeAnimation sequence={[2000, "Jeromy Kho."]} cursor={false} />
@@ -99,7 +99,7 @@ export default function Home() {
               code={true}
               style={{
                 color: COLORS.COOL_GRAY,
-                fontSize: currentBreakpoint.sm ? 18 : 24,
+                fontSize: isSmall ? 18 : 24,
                 marginLeft: -2,
               }}
             >

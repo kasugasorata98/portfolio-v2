@@ -21,7 +21,7 @@ const Email = styled(Text)`
 `;
 
 export const RightSidePanel = () => {
-  const { currentBreakpoint } = useDeviceScreen();
+  const { isSmall } = useDeviceScreen();
   return (
     <FlexMotion
       initial={{
@@ -38,7 +38,7 @@ export const RightSidePanel = () => {
       vertical={true}
       gap={115}
       style={{
-        display: currentBreakpoint.sm ? "none" : "flex",
+        display: isSmall ? "none" : "flex",
         position: "fixed",
         right: -75,
         bottom: 0,

@@ -11,7 +11,7 @@ export const Onboarding = ({ onClick }: { onClick: VoidFunction }) => {
     <Flex
       vertical={true}
       style={{
-        width: "100dvw",
+        width: "100%",
         height: "100dvh",
         justifyContent: "center",
         alignItems: "center",

@@ -12,7 +12,7 @@ import useDeviceScreen from "@/hooks/useDeviceScreen";
 const FlexMotion = motion(Flex);
 
 export const LeftSidePanel = () => {
-  const { currentBreakpoint } = useDeviceScreen();
+  const { isSmall } = useDeviceScreen();
   const socialButtons: Array<{
     animation: any;
     href: string;
@@ -54,7 +54,7 @@ export const LeftSidePanel = () => {
       vertical={true}
       gap={10}
       style={{
-        display: currentBreakpoint.sm ? "none" : "flex",
+        display: isSmall ? "none" : "flex",
         width: 45,
         position: "fixed",
         left: 0,
